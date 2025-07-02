@@ -5,28 +5,23 @@ namespace App\Livewire\Post;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Models\Post;
-
-
+use Livewire\WithFileUploads;
 
 #[Layout('layouts.app')]
 
 class Edit extends Component
 {
-    public $post;
-    public $title;
-    public $content;
-    public $excerpt;
-    public $status;
-    public $image;
-    public $imagePreview;
+    use WithFileUploads;
+
+    public $post, $title, $content, $excerpt, $status, $image, $imagePreview;
 
     public function mount(Post $post)
     {
-        $this->post = $post;
-        $this->title = $post->title;
-        $this->content = $post->content;
-        $this->excerpt = $post->excerpt;
-        $this->status = $post->status;
+        $this->post         = $post;
+        $this->title        = $post->title;
+        $this->content      = $post->content;
+        $this->excerpt      = $post->excerpt;
+        $this->status       = $post->status;
         $this->imagePreview = $post->image ? asset('storage/' . $post->image) : null;
     }
 

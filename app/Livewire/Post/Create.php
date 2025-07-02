@@ -19,19 +19,18 @@ class Create extends Component
     public function store()
     {
         $this->validate([
-            'title' => 'required',
+            'title'   => 'required',
             'content' => 'required',
-            'image' => 'nullable|image|max:2048',
+            'image'   => 'nullable|image|max:2048',
         ]);
 
         $post = Post::create([
-            'title' => $this->title,
-            'slug' => Str::slug($this->title),
-            'content' => $this->content,
-            'excerpt' => Str::limit(strip_tags($this->content), 150),
-            'status' => $this->status,
+            'title'        => $this->title,
+            'content'      => $this->content,
+            'excerpt'      => Str::limit(strip_tags($this->content), 150),
+            'status'       => $this->status,
             'published_at' => $this->status === 'published' ? now() : null,
-            'image' => $this->image ? $this->image->store('uploads', 'public') : null,
+            'image'        => $this->image ? $this->image->store('uploads', 'public') : null,
         ]);
 
         $post->categories()->sync($this->category_ids);
