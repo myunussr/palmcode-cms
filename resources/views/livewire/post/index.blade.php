@@ -39,13 +39,6 @@
                         {{ $post->excerpt ?? 'No excerpt available.' }}
                     </p>
 
-                    {{-- <div>
-                        @if($post->status === 'published')
-                            <span class="text-primary bg-[#D0F6F7] px-3 py-2 rounded-full text-xs font-medium">Published</span>
-                        @else
-                            <span class="text-yellow-700 bg-yellow-100 px-3 py-2 rounded-full text-xs font-medium">Draft</span>
-                        @endif
-                    </div> --}}
                     <div>
                         @if($post->status === 'published')
                             <span class="text-primary bg-[#D0F6F7] px-3 py-2 rounded-full text-xs font-medium">Published</span>
@@ -61,5 +54,9 @@
                 No posts available.
             </div>
         @endforelse
+        <!-- Pagination -->
+        <div class="mt-8">
+            {{ $posts->links('vendor.pagination.tailwind') }}
+        </div>
     </div>
 </div>

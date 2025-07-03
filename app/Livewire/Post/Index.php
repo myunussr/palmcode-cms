@@ -33,7 +33,7 @@ class Index extends Component
     public function render()
     {
         return view('livewire.post.index', [
-            'posts' => Post::latest()->get()
+            'posts' => Post::latest()->paginate(3)
         ]);
     }
 }
