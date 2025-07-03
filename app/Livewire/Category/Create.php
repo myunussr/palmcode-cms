@@ -13,7 +13,6 @@ use Livewire\Attributes\Layout;
 class Create extends Component
 {
     public $name;
-    public $description;
 
     public function goToIndex()
     {

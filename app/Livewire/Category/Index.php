@@ -20,6 +20,8 @@ class Index extends Component
     public function delete($id)
     {
         Category::findOrFail($id)->delete();
+
+        session()->flash('success', 'Category deleted successfully.');
     }
 
     public function render()

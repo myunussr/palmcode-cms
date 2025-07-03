@@ -28,8 +28,6 @@ class Index extends Component
         $post->delete();
 
         session()->flash('success', 'Post deleted successfully.');
-
-        return redirect()->route('post.index');
     }
 
     public function render()

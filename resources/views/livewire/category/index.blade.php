@@ -1,35 +1,7 @@
 <div class="container mx-auto px-4 py-10">
     <div class="max-w-3xl mx-auto">
-        <!-- Flash Message -->
-        
-        @if (session()->has('success'))
-        <div 
-            x-data="{ show: true, progress: 100 }"
-            x-init="
-                let interval = setInterval(() => {
-                    if (progress <= 0) {
-                        clearInterval(interval);
-                        show = false;
-                    } else {
-                        progress -= 1;
-                    }
-                }, 30);
-            "
-            x-show="show"
-            x-transition.opacity.duration.300ms
-            class="relative mb-4 px-4 py-3 bg-green-50 border border-green-100 text-green-700 text-sm rounded-md"
-        >
-            <div class="flex justify-between items-center">
-                <span>{{ session('success') }}</span>
-                <button @click="show = false" class="ml-4 text-green-400 hover:text-green-600 text-base font-semibold">&times;</button>
-            </div>
-
-            <!-- Subtle Green Progress Bar -->
-            <div class="absolute bottom-0 left-0 h-0.5 bg-green-300 transition-all"
-                :style="'width: ' + progress + '%'">
-            </div>
-        </div>
-    @endif
+       <!-- Flash Message --> 
+        <x-alert-success />
 
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
