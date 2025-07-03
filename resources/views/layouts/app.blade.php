@@ -20,10 +20,11 @@
     @livewireStyles
 </head>
 <body class="font-sans antialiased">
-    <div :class="route === 'home' ? 'min-h-screen' : 'min-h-screen bg-gray-50'">
-        @unless(request()->routeIs('home'))
-            <livewire:layout.navigation />
-        @endunless
+        <div :class="['home', 'page.view', 'post.view'].includes(route) ? 'min-h-screen' : 'min-h-screen bg-gray-50'">
+            @unless(request()->routeIs('home', 'page.view', 'post.view'))
+                <livewire:layout.navigation />
+            @endunless
+        
 
         <!-- Page Heading -->
         @if (isset($header))

@@ -5,6 +5,7 @@ use App\Livewire\Post\Index;
 use App\Livewire\Post\Create;
 use App\Livewire\Post\Edit;
 use App\Livewire\PostShow;
+use App\Livewire\PageShow;
 use App\Livewire\Dashboard;
 use App\Livewire\Home;
 use App\Livewire\Category\Index as CategoryIndex;
@@ -17,6 +18,8 @@ use App\Livewire\Page\Edit as PageEdit;
 
 Route::get('/', Home::class)->name('home');
 Route::get('/posts/{slug}', PostShow::class)->name('post.view');
+Route::get('/pages/{slug}', PageShow::class)->name('page.view');
+
 
 
 Route::middleware(['auth'])->prefix('admin')->group(function () {

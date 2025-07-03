@@ -18,10 +18,10 @@
                     <div class="flex justify-between items-start">
                         <h3 class="text-xl font-semibold text-gray-900">{{ $page->title }}</h3>
                         <div class="flex gap-2">
-                            {{-- <a href="{{ route('page.view', $page->slug) }}"
+                            <a href="{{ route('page.view', $page->slug) }}"
                                class="text-sm px-4 py-2 bg-blue-100 text-blue-700 rounded-full hover:bg-blue-200 transition">
                                 View
-                            </a> --}}
+                            </a>
                             <a href="{{ route('page.edit', $page->id) }}"
                                class="text-sm px-4 py-2 bg-yellow-100 text-yellow-700 rounded-full hover:bg-yellow-200 transition">
                                 Edit
