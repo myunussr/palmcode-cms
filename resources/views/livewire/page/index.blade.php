@@ -53,6 +53,9 @@
                 No pages available.
             </div>
         @endforelse
+        <div class="mt-8">
+            {{ $pages->links('vendor.pagination.tailwind') }}
+        </div>
     </div>
 </div>
 
