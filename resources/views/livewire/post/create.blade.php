@@ -93,6 +93,19 @@
                     />
                     @error('excerpt') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
                 </div>
+                
+                <select
+                    wire:model="category_ids"
+                    multiple
+                    class="w-full border-gray-200 rounded-xl focus:ring-primary focus:border-primary focus:outline-none text-sm"
+                    size="5"
+                >
+                    @foreach ($allCategories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_ids') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+
 
                 <!-- Image Upload -->
                 <div>

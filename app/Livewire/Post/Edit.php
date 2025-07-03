@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Post;
 
+use App\Models\Category;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use App\Models\Post;
@@ -14,7 +15,7 @@ class Edit extends Component
 {
     use WithFileUploads;
 
-    public $post, $title, $content, $excerpt, $status, $image, $imagePreview;
+    public $post, $title, $content, $excerpt, $status, $image, $imagePreview, $category_ids = [], $allCategories;
 
     public function goToIndex()
     {
@@ -23,12 +24,14 @@ class Edit extends Component
 
     public function mount(Post $post)
     {
-        $this->post         = $post;
-        $this->title        = $post->title;
-        $this->content      = $post->content;
-        $this->excerpt      = $post->excerpt;
-        $this->status       = $post->status;
-        $this->imagePreview = $post->image ? asset('storage/' . $post->image) : null;
+        $this->post          = $post;
+        $this->title         = $post->title;
+        $this->content       = $post->content;
+        $this->excerpt       = $post->excerpt;
+        $this->status        = $post->status;
+        $this->imagePreview  = $post->image ? asset('storage/' . $post->image) : null;
+        $this->category_ids  = $post->categories()->pluck('id')->toArray(); // pre-select categories
+        $this->allCategories = Category::all();
     }
 
     public function update()
@@ -39,6 +42,8 @@ class Edit extends Component
             'excerpt' => 'nullable|string|max:255',
             'status'  => 'required|in:draft,published',
             'image'   => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'category_ids' => 'array',
+            'category_ids.*' => 'exists:categories,id',
         ]);
 
         if ($this->image) {
@@ -57,6 +62,8 @@ class Edit extends Component
         $this->post->status    = $this->status;
 
         $this->post->save();
+
+        $this->post->categories()->sync($this->category_ids);
 
         session()->flash('success', 'Post updated successfully.');
 

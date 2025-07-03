@@ -38,14 +38,21 @@
                     <p class="text-gray-600 text-sm leading-relaxed">
                         {{ $post->excerpt ?? 'No excerpt available.' }}
                     </p>
-
-                    <div>
+                    <div class="flex items-center flex-wrap gap-2 mt-2">
+                        {{-- Status Badge --}}
                         @if($post->status === 'published')
                             <span class="text-primary bg-[#D0F6F7] px-3 py-2 rounded-full text-xs font-medium">Published</span>
                         @else
-                            <span class="text-gray-700 bg-gray-100 px-3 py-2 rounded-full text-xs font-medium">Draft</span>
-                        @endif
+<span class="text-orange-800 bg-orange-100 px-3 py-2 rounded-full text-xs font-medium">Draft</span>                        @endif
+                    
+                        {{-- Category Tags --}}
+                        @foreach ($post->categories as $category)
+                            <span class="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
+                                {{ $category->name }}
+                            </span>
+                        @endforeach
                     </div>
+                    
                     
                 </div>
             </div>

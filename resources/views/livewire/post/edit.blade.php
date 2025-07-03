@@ -92,6 +92,23 @@
                     />
                 </div>
 
+                <!-- Categories -->
+                <div>
+                    <label class="block text-sm text-gray-500 font-medium mb-1">Categories</label>
+                    <select
+                        wire:model="category_ids"
+                        multiple
+                        class="w-full border-gray-200 rounded-xl focus:ring-primary focus:border-primary focus:outline-none text-sm"
+                        size="5"
+                    >
+                        @foreach ($allCategories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
+                    @error('category_ids') <p class="text-sm text-red-500 mt-1">{{ $message }}</p> @enderror
+                </div>
+
+
                 <!-- Image Upload -->
                 {{-- <div>
                     <label class="block text-sm text-gray-500 font-medium mb-1">Cover Image</label>

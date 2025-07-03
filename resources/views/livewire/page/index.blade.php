@@ -43,8 +43,7 @@
                         @if($page->status === 'published')
                             <span class="text-primary bg-[#D0F6F7] px-3 py-2 rounded-full text-xs font-medium">Published</span>
                         @else
-                            <span class="text-gray-700 bg-gray-100 px-3 py-2 rounded-full text-xs font-medium">Draft</span>
-                        @endif
+<span class="text-orange-800 bg-orange-100 px-3 py-2 rounded-full text-xs font-medium">Draft</span>                        @endif
                     </div>
                 </div>
             </div>

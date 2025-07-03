@@ -14,11 +14,17 @@ class Create extends Component
 {
     use WithFileUploads;
 
-    public $title, $content, $excerpt, $status = 'draft', $published_at, $image, $category_ids = [];
+    public $title, $content, $excerpt, $status = 'draft', $published_at, $image, $category_ids = [], $allCategories;
+
 
     public function goToIndex()
     {
         return redirect()->route('post.index');
+    }
+
+    public function mount()
+    {
+        $this->allCategories = Category::all();
     }
 
     public function store()
@@ -27,6 +33,8 @@ class Create extends Component
             'title'   => 'required',
             'content' => 'required',
             'image'   => 'nullable|image|max:2048',
+            'category_ids' => 'array',
+            'category_ids.*' => 'exists:categories,id',
         ]);
 
         $post = Post::create([
