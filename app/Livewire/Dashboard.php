@@ -13,10 +13,9 @@ use Livewire\Attributes\Layout;
 
 class Dashboard extends Component
 {
-    public $totalPosts;
-    public $totalPages;
-    public $totalCategories;
-    public $totalUsers;
+    public $totalPosts, $totalPages, $totalCategories, $totalUsers, $latestPosts, $latestCategories, $latestUsers, $latestPages;
+
+    public int $latestLimit = 2;
 
     public function mount()
     {
@@ -24,6 +23,11 @@ class Dashboard extends Component
         $this->totalPages = Page::count();
         $this->totalCategories = Category::count();
         $this->totalUsers = User::count();
+
+        $this->latestPosts = Post::latest()->take($this->latestLimit)->get();
+        $this->latestCategories = Category::latest()->take($this->latestLimit)->get();
+        $this->latestUsers = User::latest()->take($this->latestLimit)->get();
+        $this->latestPages = Page::latest()->take($this->latestLimit)->get();
     }
 
     public function render()
