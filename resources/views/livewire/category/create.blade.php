@@ -38,16 +38,6 @@
                     @error('name') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
                 </div>
 
-                <!-- Description -->
-                <div>
-                    <textarea wire:model="description"
-                              placeholder="Short description (optional)"
-                              rows="4"
-                              class="w-full text-sm text-gray-700 placeholder-gray-400 bg-transparent border border-gray-200 rounded-xl focus:ring-primary focus:border-primary focus:outline-none resize-none transition"
-                    ></textarea>
-                    @error('description') <span class="text-sm text-red-500">{{ $message }}</span> @enderror
-                </div>
-
                 <!-- Save and Cancel -->
                 <div class="pt-4 flex justify-end gap-4">
                     <button type="button"

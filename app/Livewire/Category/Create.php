@@ -24,13 +24,11 @@ class Create extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'description' => 'nullable|string|max:500',
         ]);
 
         Category::create([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
-            'description' => $this->description,
         ]);
 
         return redirect()->route('category.index');
