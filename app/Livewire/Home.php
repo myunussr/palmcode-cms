@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\WithPagination;
 use Livewire\Attributes\Layout;
 
@@ -14,21 +15,34 @@ class Home extends Component
 {
     use WithPagination;
 
-    public const DEFAULT_PER_PAGE = 5;
+    public $selectedCategory = null;
 
-    public $perPage = self::DEFAULT_PER_PAGE;
+    protected $updatesQueryString = ['selectedCategory'];
 
-    protected $listeners = ['load-more' => 'loadMore'];
-
-    public function loadMore()
+    public function updatingSelectedCategory()
     {
-        $this->perPage += self::DEFAULT_PER_PAGE;
+        $this->resetPage();
+    }
+
+    public function filterByCategory($categoryId)
+    {
+        $this->selectedCategory = $categoryId;
     }
 
     public function render()
     {
+        $posts = Post::with('categories')
+            ->where('status', 'published')
+            ->when(
+                $this->selectedCategory,
+                fn($q) =>
+                $q->whereHas('categories', fn($q2) => $q2->where('id', $this->selectedCategory))
+            )
+            ->get();
+
         return view('livewire.home', [
-            'posts'      => Post::where('status', 'published')->latest()->paginate($this->perPage)
+            'posts' => $posts,
+            'categories' => Category::all(),
         ]);
     }
 }
