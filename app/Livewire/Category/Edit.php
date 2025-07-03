@@ -4,40 +4,45 @@ namespace App\Livewire\Category;
 
 use Livewire\Component;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Livewire\Attributes\Layout;
 
-
 #[Layout('layouts.app')]
-
-class Create extends Component
+class Edit extends Component
 {
+    public $categoryId;
     public $name;
     public $description;
 
-    public function goToIndex()
+    public function mount(Category $category)
     {
-        return redirect()->route('category.index');
+        $this->categoryId = $category->id;
+        $this->name = $category->name;
+        $this->description = $category->description;
     }
 
-    public function store()
+    public function update()
     {
         $this->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:500',
         ]);
 
-        Category::create([
+        Category::findOrFail($this->categoryId)->update([
             'name' => $this->name,
-            'slug' => Str::slug($this->name),
             'description' => $this->description,
         ]);
 
+        session()->flash('success', 'Category updated successfully!');
+        return redirect()->route('category.index');
+    }
+
+    public function goToIndex()
+    {
         return redirect()->route('category.index');
     }
 
     public function render()
     {
-        return view('livewire.category.create');
+        return view('livewire.category.edit');
     }
 }

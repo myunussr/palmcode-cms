@@ -3,7 +3,7 @@
     x-on:close-modal.window="open = false"
     x-effect="if (!open) window.location.href = '{{ route('category.index') }}'"
     @keydown.escape.window="$wire.goToIndex()"
-    >
+>
     <!-- Overlay -->
     <div x-show="open" x-transition.opacity
          class="fixed inset-0 bg-black/40 z-40"
@@ -16,12 +16,12 @@
              style="max-height: 90vh;" @click.away="$wire.goToIndex()">
 
             <!-- Form -->
-            <form wire:submit.prevent="store"
+            <form wire:submit.prevent="update"
                   class="px-6 py-6 space-y-6 overflow-y-auto" style="max-height: 90vh;">
 
                 <!-- Header -->
                 <div class="flex items-center justify-between">
-                    <h2 class="text-2xl font-semibold text-primary">Create Category</h2>
+                    <h2 class="text-2xl font-semibold text-primary">Edit Category</h2>
                     <button type="button" @click="open = false"
                             class="text-gray-400 hover:text-gray-600 text-2xl rounded-full w-9 h-9 flex items-center justify-center transition">
                         &times;
@@ -58,7 +58,7 @@
 
                     <button type="submit"
                             class="px-6 py-3 bg-primary text-white text-sm font-semibold rounded-full hover:bg-[#0BA0A3] transition">
-                        Save
+                        Update
                     </button>
                 </div>
             </form>
