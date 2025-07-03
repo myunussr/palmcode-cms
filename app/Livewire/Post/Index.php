@@ -4,9 +4,9 @@ namespace App\Livewire\Post;
 
 use App\Models\Post;
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\Layout;
 
 
 
@@ -16,7 +16,6 @@ class Index extends Component
     use WithPagination;
 
     protected $paginationTheme = 'tailwind';
-
 
     public function delete($id)
     {
@@ -29,6 +28,8 @@ class Index extends Component
         $post->delete();
 
         session()->flash('success', 'Post deleted successfully.');
+
+        return redirect()->route('post.index');
     }
 
     public function render()

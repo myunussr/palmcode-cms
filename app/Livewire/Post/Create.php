@@ -16,6 +16,11 @@ class Create extends Component
 
     public $title, $content, $excerpt, $status = 'draft', $published_at, $image, $category_ids = [];
 
+    public function goToIndex()
+    {
+        return redirect()->route('post.index');
+    }
+
     public function store()
     {
         $this->validate([
@@ -30,12 +35,13 @@ class Create extends Component
             'excerpt'      => Str::limit(strip_tags($this->content), 150),
             'status'       => $this->status,
             'published_at' => $this->status === 'published' ? now() : null,
-            'image'        => $this->image ? $this->image->store('uploads', 'public') : null,
+            'image'        => $this->image ? $this->image->store('posts', 'public') : null,
         ]);
 
         $post->categories()->sync($this->category_ids);
 
-        session()->flash('message', 'Post created!');
+        session()->flash('success', 'Post created successfully.');
+
         return redirect()->route('post.index');
     }
 
