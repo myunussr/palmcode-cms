@@ -6,6 +6,8 @@ use App\Models\Post;
 use Livewire\Component;
 use Livewire\Attributes\Layout;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\Storage;
+
 
 
 #[Layout('layouts.app')]
@@ -14,6 +16,20 @@ class Index extends Component
     use WithPagination;
 
     protected $paginationTheme = 'tailwind';
+
+
+    public function delete($id)
+    {
+        $post = Post::findOrFail($id);
+
+        if ($post->image && Storage::disk('public')->exists($post->image)) {
+            Storage::disk('public')->delete($post->image);
+        }
+
+        $post->delete();
+
+        session()->flash('success', 'Post deleted successfully.');
+    }
 
     public function render()
     {
