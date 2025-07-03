@@ -1,5 +1,5 @@
 <div class="max-w-4xl mx-auto mt-12 px-4">
-    <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">All Blogs</h2>
+    <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">All Posts</h2>
 
     <div class="space-y-4 pb-12">
         @forelse($posts as $post)

@@ -28,7 +28,7 @@ class Home extends Component
     public function render()
     {
         return view('livewire.home', [
-            'posts' => Post::latest()->paginate($this->perPage),
+            'posts'      => Post::where('status', 'published')->latest()->paginate($this->perPage),
             'hideHeader' => true,
         ]);
     }
