@@ -38,7 +38,7 @@ class Home extends Component
                 fn($q) =>
                 $q->whereHas('categories', fn($q2) => $q2->where('id', $this->selectedCategory))
             )
-            ->get();
+            ->latest()->get();
 
         return view('livewire.home', [
             'posts' => $posts,
