@@ -8,6 +8,18 @@ A modern **Headless Content Management System (CMS)** built with Laravel 12. Thi
 
 [![Watch on YouTube](https://img.youtube.com/vi/_yWyG30gkdw/0.jpg)](https://www.youtube.com/watch?v=_yWyG30gkdw)
 
+## ⚙️ Requirements
+
+To run this Laravel 12 project, you need:
+
+-   ✅ PHP **8.2+**
+-   ✅ Composer **2.6+**
+-   ✅ MySQL or MariaDB
+-   ✅ Node.js **18+** and npm (for optional frontend)
+-   ✅ Laravel CLI (`composer global require laravel/installer`)
+
+---
+
 ## 🚀 Features
 
 -   ⚙️ Built with **Laravel 12**
@@ -23,6 +35,15 @@ A modern **Headless Content Management System (CMS)** built with Laravel 12. Thi
 -   ✍️ Supports Markdown or Rich Text (via editor like Trix or TipTap)
 -   🎨 Optional Livewire + Tailwind CSS for admin UI
 -   📄 Clean codebase with Laravel's modern directory structure
+
+---
+
+## 🔐 Default Login
+
+You can log in using the following credentials (created via seeder):
+
+-   **Email**: `admin@gmail.com`
+-   **Password**: `Admin123!`
 
 ---
 
