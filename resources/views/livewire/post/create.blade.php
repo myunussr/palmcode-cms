@@ -18,7 +18,7 @@
                 <!-- Heading and Close Button -->
                 <div class="flex items-center justify-between">
                     <h2 class="text-2xl font-semibold text-primary">Create Post</h2>
-                    <button type="button" @click="open = false"
+                    <button type="button"  wire:click="goToIndex"
                             class="text-gray-400 hover:text-gray-600 text-2xl rounded-full w-9 h-9 flex items-center justify-center transition">
                         &times;
                     </button>
